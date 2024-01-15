@@ -9,6 +9,7 @@ const MemeImage = () => {
   const [bottomText, setBottomText] = useState('')
   const [uploadedImage, setUploadedImage] = useState(null)
 
+
   const getImages = async () => {
     try {
       setLoading(true)
@@ -37,11 +38,25 @@ const MemeImage = () => {
     console.log(topText, bottomText)
   }
 
+
+  const handlePrev = () => {
+    setMemeIndex(memeIndex - 1)
+    setBottomText('')
+    setTopText('')
+  }
+
+  const handleNext = () => {  
+    setMemeIndex(memeIndex + 1)
+    setBottomText('')
+    setTopText('')
+  }
+
   const handleFileChange = (event) => {
     if (event.target.files && event.target.files[0]) {
       setUploadedImage(URL.createObjectURL(event.target.files[0]));
     }
   };
+
 
 
   return (
@@ -59,16 +74,18 @@ const MemeImage = () => {
             <input
               type="text"
               placeholder='Type meme text for top'
+              className='input-top'
             /><br />
             <input
               type="text"
               placeholder='Type meme text for bottom'
+              className='input-bottom'
             /><br />
             <input type="file" id="input" multiple onChange={handleFileChange} /><br></br>
             <button type="submit">Submit</button><br />
           </form>
-          {memeIndex > 0 && <button onClick={() => setMemeIndex(memeIndex - 1)}>Previous Meme</button>}
-          <button onClick={() => setMemeIndex(memeIndex + 1)}>Next Meme</button>
+          {memeIndex > 0 && <button onClick={()=>handlePrev}>Previous Meme</button>}
+          <button onClick={()=>handleNext()}>Next Meme</button>
         </div>
       )}
     </div>
