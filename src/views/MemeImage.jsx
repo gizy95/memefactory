@@ -53,7 +53,7 @@ const MemeImage = () => {
               value={bottomText}
               onChange={(e) => setBottomText(e.target.value)}
             /><br />
-            <button type="submit">Submit</button>
+            <button type="submit">Submit</button><br />
             {memeIndex > 0 && <button onClick={() => setMemeIndex(memeIndex - 1)}>Previous Meme</button>}
             <button onClick={() => setMemeIndex(memeIndex + 1)}>Next Meme</button>
           </div>
