@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 const MemeImage = () => {
   const [memeImages, setMemeImage] = useState([])
-  const [memeIndex, setMemeIndex] = useState(1)
+  const [memeIndex, setMemeIndex] = useState(0)
   const [loading, setLoading] = useState(true)
   const [topText, setTopText] = useState('')
   const [bottomText, setBottomText] = useState('')
@@ -54,9 +54,12 @@ const MemeImage = () => {
               onChange={(e) => setBottomText(e.target.value)}
             /><br />
             <button type="submit">Submit</button>
+            {memeIndex > 0 && <button onClick={() => setMemeIndex(memeIndex - 1)}>Previous Meme</button>}
+            <button onClick={() => setMemeIndex(memeIndex + 1)}>Next Meme</button>
           </div>
         </form>
       )}
+
     </div>
   )
 }
