@@ -106,3 +106,12 @@ form button {
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
   text-align: center; 
 }
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem 2rem;
+  color: #fff;
+}
