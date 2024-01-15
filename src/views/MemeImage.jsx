@@ -7,7 +7,8 @@ const MemeImage = () => {
   const [loading, setLoading] = useState(true)
   const [topText, setTopText] = useState('')
   const [bottomText, setBottomText] = useState('')
-  const [editing, setEditing] = useState(false)
+  const [uploadedImage, setUploadedImage] = useState(null)
+
 
   const getImages = async () => {
     try {
@@ -37,6 +38,7 @@ const MemeImage = () => {
     console.log(topText, bottomText)
   }
 
+
   const handlePrev = () => {
     setMemeIndex(memeIndex - 1)
     setBottomText('')
@@ -49,6 +51,13 @@ const MemeImage = () => {
     setTopText('')
   }
 
+  const handleFileChange = (event) => {
+    if (event.target.files && event.target.files[0]) {
+      setUploadedImage(URL.createObjectURL(event.target.files[0]));
+    }
+  };
+
+
 
   return (
     <div>
@@ -57,7 +66,7 @@ const MemeImage = () => {
       ) : (
         <div>
           <div className='container'>
-            <img src={memeImages[memeIndex].url} alt="meme" /> <br />
+            <img src={uploadedImage || memeImages[memeIndex].url} alt="meme" /> <br />
             <p className='topLeft'>{topText}</p>
             <p className='bottom'>{bottomText}</p>
           </div>
@@ -72,6 +81,7 @@ const MemeImage = () => {
               placeholder='Type meme text for bottom'
               className='input-bottom'
             /><br />
+            <input type="file" id="input" multiple onChange={handleFileChange} /><br></br>
             <button type="submit">Submit</button><br />
           </form>
           {memeIndex > 0 && <button onClick={()=>handlePrev}>Previous Meme</button>}
