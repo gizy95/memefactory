@@ -28,11 +28,12 @@ const MemeImage = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
+    setTopText(event.target[0].value)
+    setBottomText(event.target[1].value)
+    event.target[0].value = "";
+    event.target[1].value = "";
+
     console.log(topText, bottomText)
-    setTopText('')
-    setBottomText('')
-
-
   }
 
 
@@ -44,23 +45,20 @@ const MemeImage = () => {
         <div>
           <div className='container'>
             <img src={memeImages[memeIndex].url} alt="meme" /> <br />
-            <p className='topLeft'>Top Left</p>
-            <p className='bottom'>Bottom</p>
+            <p className='topLeft'>{topText}</p>
+            <p className='bottom'>{bottomText}</p>
           </div>
           <form onSubmit={handleSubmit}>
-          <input
+            <input
               type="text"
               placeholder='Type meme text for top'
-              value={topText}
-              onChange={(e) => setTopText(e.target.value)}
             /><br />
             <input
               type="text"
               placeholder='Type meme text for bottom'
-              value={bottomText}
-              onChange={(e) => setBottomText(e.target.value)}
             /><br />
-          <button type="submit">Submit</button><br />
+            <button type="submit">Submit</button><br />
+          </form>
           {memeIndex > 0 && <button onClick={() => setMemeIndex(memeIndex - 1)}>Previous Meme</button>}
           <button onClick={() => setMemeIndex(memeIndex + 1)}>Next Meme</button>
         </div>
